@@ -7,15 +7,28 @@ let opr = "";
 const regex = new RegExp(/[0-9()+\-*=/.]/g);
 const display = document.querySelector("#display");
 const numButtons = document.querySelectorAll(".num");
+const oprButtons = document.querySelectorAll(".opr");
 
 // for each button add eventlistener for button clicked and display
 numButtons.forEach(key => {
     key.addEventListener("click", e => {
-        //upon click, let first variable store values and populate display
-        firstVar+=e.target.textContent;
-        display.textContent = firstVar;
+        //upon click, populate display
+        display.textContent += e.target.textContent;
     })
 })
+
+// for each opr button, only allow one opr to be used
+oprButtons.forEach(key => {
+    key.addEventListener("click", e => {
+        // upon first click of operators, store first variable value
+        if (firstVar === "") firstVar = display.textContent;
+        //upon click, let first variable store values and populate display
+        opr = e.target.textContent;
+        // limit opr used to only one
+        display.textContent = opr;
+    })
+})
+
 
 // if user presses valid numeric key, display value
 // display.addEventListener("keypress", e => {

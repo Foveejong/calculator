@@ -15,6 +15,16 @@ numButtons.forEach(key => {
     key.addEventListener("click", e => {
         //upon click, populate display
         display.textContent += e.target.textContent;
+
+        //if opr exists and there is no secondVar yet, clear display to start displaying secondVar
+        if (opr && secondVar === "") {
+            console.log("here");
+            // remove operator from display
+            display.textContent = "";  
+            //populate display again
+            display.textContent += e.target.textContent; 
+            secondVar = display.textContent;
+        }
     })
 })
 
@@ -27,16 +37,15 @@ oprButtons.forEach(key => {
         display.textContent = e.target.textContent;
         //upon click, populate display with opr
         opr = display.textContent;
-        console.log(opr);
     })
 })
 
 // when equals button is pressed, store second variable and run operation
 equals.addEventListener("click", e => {
-    // upon first click of equals, store second variable value
-    if (secondVar === "") secondVar = display.textContent;
+    // store second variable value
+    secondVar = display.textContent;
+    display.textContent = operate(+firstVar, +secondVar, opr);
 })
-
 
 // if user presses valid numeric key, display value
 // display.addEventListener("keypress", e => {
@@ -48,8 +57,8 @@ equals.addEventListener("click", e => {
 function operate(a, b, op) {
     if (op === "+") return add(a, b)
     if (op === "-") return subtract(a, b)
-    if (op === "*") return multiply(a, b)
-    if (op === "/") return divide(a, b)
+    if (op === "\u00d7") return multiply(a, b)
+    if (op === "\u00f7") return divide(a, b)
 }
 
 function add(a, b) {

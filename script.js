@@ -31,6 +31,13 @@ numButtons.forEach(key => {
             display.textContent += e.target.textContent; 
             secondVar = display.textContent;
         }
+
+        // Error handling for if user divides by 0
+        if (opr === "\u00f7" && e.target.textContent === "0") {
+            alert("Result is undefined!")
+            alert("Please retry!")
+            clearVars();
+        };
     })
 })
 
@@ -42,7 +49,6 @@ oprButtons.forEach(key => {
         if (secondVar != "" && firstVar != "" && opr != "") {
             secondVar = display.textContent;
             result = operate(+firstVar, +secondVar, opr);
-            console.log(result);
             display.textContent = result, firstVar = result, secondVar = "";
         }
 

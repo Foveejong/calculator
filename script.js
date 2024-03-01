@@ -86,7 +86,7 @@ equals.addEventListener("click", e => {
 //     }
 // })
 
-clear.addEventListener("click", clearVars());
+clear.addEventListener("click", clearVars);
 
 function operate(a, b, op) {
     if (op === "+") return add(a, b)

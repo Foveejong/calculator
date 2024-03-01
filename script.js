@@ -47,7 +47,8 @@ oprButtons.forEach(key => {
         }
 
         // upon first click of operators, store first variable value
-        firstVar = display.textContent;
+        //check if display contains numbers or decimal point, do not allow operators
+        if (/[0-9.]/g.test(display.textContent)) firstVar = display.textContent;
         // limit opr used to only one
         display.textContent = e.target.textContent;
         //upon click, populate display with opr
@@ -85,6 +86,8 @@ equals.addEventListener("click", e => {
 //     }
 // })
 
+clear.addEventListener("click", clearVars());
+
 function operate(a, b, op) {
     if (op === "+") return add(a, b)
     if (op === "-") return subtract(a, b)
@@ -103,4 +106,12 @@ function multiply(a, b) {
 }
 function divide(a, b) {
     return a / b;
+}
+
+function clearVars() {
+    firstVar = "";
+    secondVar = "";
+    result = "";
+    opr = "";
+    display.textContent = "";
 }

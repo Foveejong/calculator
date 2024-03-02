@@ -11,6 +11,8 @@ const numButtons = document.querySelectorAll(".num");
 const oprButtons = document.querySelectorAll(".opr");
 const equals = document.querySelector(".equals");
 const clear = document.querySelector(".clear");
+const decimal = document.querySelector(".decimal");
+
 
 // for each button add eventlistener for button clicked and display
 numButtons.forEach(key => {
@@ -19,6 +21,9 @@ numButtons.forEach(key => {
         if (newOp) {
             display.textContent = "";
             newOp = false;
+
+            // reset decimal point
+            decimal.disabled = false;
         }
         //upon click, populate display
         display.textContent += e.target.textContent;
@@ -41,7 +46,6 @@ numButtons.forEach(key => {
 
         // check if length of display > 10, then cap it
         display.textContent = maxLength(display.textContent);
-        console.log("hi")
     })
 })
 
@@ -66,6 +70,9 @@ oprButtons.forEach(key => {
 
         // check if maxlength > 10
         display.textContent = maxLength(display.textContent);
+
+        // reset decimal button
+        decimal.disabled = false;
     })
 })
 
@@ -89,10 +96,15 @@ equals.addEventListener("click", () => {
 
     // if user press = immediately after operator
     if (firstVar != "" && opr != "" && secondVar === "") alert("Please insert second value!")
+    
+    // tell the algorithm that it is a new operation and allow user to input new value
     newOp = true;
 
     //check if maxlength is > 10 and cap it
     display.textContent = maxLength(display.textContent);
+
+    // reset decimal point
+    decimal.disabled = false;
 })
 
 // if user presses valid numeric key, display value
@@ -102,7 +114,13 @@ equals.addEventListener("click", () => {
 //     }
 // })
 
+// reset all variables when user clicks "clear"
 clear.addEventListener("click", clearVars);
+
+// only allow user to input one decimal point
+decimal.addEventListener("click", e => {
+    decimal.disabled = true;
+}) 
 
 function operate(a, b, op) {
     if (op === "+") return add(a, b)
@@ -130,6 +148,7 @@ function clearVars() {
     result = "";
     opr = "";
     display.textContent = "";
+    decimal.disabled = false;
 }
 
 // returns a string of length 10 only 
@@ -137,11 +156,7 @@ function maxLength(string) {
     if (string.length > 10) {
         return string.substr(0, 10);
     } else {
+        //if normal number, return it
         return string;
     }
 }
-
-// function round(num) {
-//     // round num correctly to 10 digits
-//     if (num.length > 9) 
-//     num = 

@@ -38,6 +38,10 @@ numButtons.forEach(key => {
             alert("Please retry!")
             clearVars();
         };
+
+        // check if length of display > 10, then cap it
+        display.textContent = maxLength(display.textContent);
+        console.log("hi")
     })
 })
 
@@ -59,11 +63,14 @@ oprButtons.forEach(key => {
         display.textContent = e.target.textContent;
         //upon click, populate display with opr
         opr = display.textContent;
+
+        // check if maxlength > 10
+        display.textContent = maxLength(display.textContent);
     })
 })
 
 // when equals button is pressed, store second variable and run operation
-equals.addEventListener("click", e => {
+equals.addEventListener("click", () => {
     //if user didnt input second value and opr, just return first value
     if (secondVar === "" && opr === "") {
         firstVar = display.textContent;
@@ -83,6 +90,9 @@ equals.addEventListener("click", e => {
     // if user press = immediately after operator
     if (firstVar != "" && opr != "" && secondVar === "") alert("Please insert second value!")
     newOp = true;
+
+    //check if maxlength is > 10 and cap it
+    display.textContent = maxLength(display.textContent);
 })
 
 // if user presses valid numeric key, display value
@@ -121,3 +131,17 @@ function clearVars() {
     opr = "";
     display.textContent = "";
 }
+
+// returns a string of length 10 only 
+function maxLength(string) {
+    if (string.length > 10) {
+        return string.substr(0, 10);
+    } else {
+        return string;
+    }
+}
+
+// function round(num) {
+//     // round num correctly to 10 digits
+//     if (num.length > 9) 
+//     num = 

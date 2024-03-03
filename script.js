@@ -12,8 +12,9 @@ const oprButtons = document.querySelectorAll(".opr");
 const equals = document.querySelector(".equals");
 const clear = document.querySelector(".clear");
 const decimal = document.querySelector(".decimal");
+const deleteBtn = document.querySelector(".delete");
 
-// prevent user from clicking and inputting random values
+// prevent user from clicking display and inputting random alphabetical values
 display.addEventListener("mousedown", e => e.preventDefault())
 
 // for each button add eventlistener for button clicked and display
@@ -126,9 +127,14 @@ document.addEventListener("keydown", e => {
 clear.addEventListener("click", clearVars);
 
 // only allow user to input one decimal point
-decimal.addEventListener("click", e => {
+decimal.addEventListener("click", () => {
     decimal.disabled = true;
 }) 
+
+// delete one char on click
+deleteBtn.addEventListener("click", () => {
+    display.textContent = backspace(display.textContent);
+})
 
 function operate(a, b, op) {
     if (op === "+") return add(a, b)

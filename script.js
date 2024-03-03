@@ -41,9 +41,8 @@ numButtons.forEach(key => {
         }
 
         // Error handling for if user divides by 0
-        if (opr === "\u00f7" && e.target.textContent === "0") {
-            alert("Result is undefined!")
-            alert("Please retry!")
+        if (opr === "\u00f7" && display.textContent === "0") {
+            alert("Result is undefined! Please try again.")
             clearVars();
         };
 

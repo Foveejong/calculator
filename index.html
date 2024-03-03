@@ -9,41 +9,42 @@
 </head>
 <body>
     <div class="calculator-container">
-        <div class="display-container">
-            <textarea id="display" type="number" cols="10" rows="1" wrap="off"></textarea>
-        </div>
-        <div class="button-grid-container">
-            <div class="numberpad-container">
-                <div class="rows">
-                    <button class="buttons num">7</button>
-                    <button class="buttons num">8</button>
-                    <button class="buttons num">9</button>
-                </div>
-                <div class="rows">
-                    <button class="buttons num">4</button>
-                    <button class="buttons num">5</button>
-                    <button class="buttons num">6</button>
-                </div>
-                <div class="rows">
-                    <button class="buttons num">1</button>
-                    <button class="buttons num">2</button>
-                    <button class="buttons num">3</button>
-                </div>
-                <div class="rows">
-                    <button class="buttons num">0</button>
-                    <button class="buttons num decimal">.</button>
-                    <button class="buttons clear">Clear</button>
+        <div class="calculator-wrapper">
+            <div class="display-container">
+                <textarea id="display" type="number" cols="10" rows="1" wrap="off"></textarea>
+            </div>
+            <div class="button-grid-container">
+                <div class="grid-wrapper">
+                    <div class="row">
+                        <button class="buttons num">7</button>
+                        <button class="buttons num">8</button>
+                        <button class="buttons num">9</button>
+                        <button class="buttons opr">+</button>
+                    </div>
+                    <div class="row">
+                        <button class="buttons num">4</button>
+                        <button class="buttons num">5</button>
+                        <button class="buttons num">6</button>
+                        <button class="buttons opr">-</button>
+                    </div>
+                    <div class="row">
+                        <button class="buttons num">1</button>
+                        <button class="buttons num">2</button>
+                        <button class="buttons num">3</button>
+                        <button class="buttons opr">&times;</button>
+                    </div>
+                    <div class="row">
+                        <button class="buttons num">0</button>
+                        <button class="buttons num decimal">.</button>
+                        <button class="buttons clear">A/C</button>    
+                        <button class="buttons opr">&divide;</button>
+                    </div>
+                    <div class="row last">
+                        <button class="buttons delete">Del</button>
+                        <button class="buttons equals">=</button>
+                    </div>
                 </div>
             </div>
-            <div class="operator-container">
-                <button class="buttons opr">+</button>
-                <button class="buttons opr">-</button>
-                <button class="buttons opr">&times;</button>
-                <button class="buttons opr">&divide;</button>
-                <button class="buttons equals">=</button>
-                <button class="buttons delete">Del</button>
-            </div>
-
         </div>
     </div>
 </body>

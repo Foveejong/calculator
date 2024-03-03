@@ -5,7 +5,7 @@ let opr = "";
 let newOp = false;
 
 // regex for numeric values and arithmetic operators
-const regex = new RegExp(/[0-9()+\-*=/.]/g);
+const regex = new RegExp(/[0-9.]/s);
 const display = document.querySelector("#display");
 const numButtons = document.querySelectorAll(".num");
 const oprButtons = document.querySelectorAll(".opr");
@@ -13,6 +13,8 @@ const equals = document.querySelector(".equals");
 const clear = document.querySelector(".clear");
 const decimal = document.querySelector(".decimal");
 
+// prevent user from clicking and inputting random values
+display.addEventListener("mousedown", e => e.preventDefault())
 
 // for each button add eventlistener for button clicked and display
 numButtons.forEach(key => {
@@ -108,11 +110,17 @@ equals.addEventListener("click", () => {
 })
 
 // if user presses valid numeric key, display value
-// display.addEventListener("keypress", e => {
-//     if (regex.test(e.key)) {
-//         display.textContent+= e.key;
-//     }
-// })
+document.addEventListener("keydown", e => {
+    if (regex.test(e.key)) {
+        display.textContent+= e.key;
+    }
+    
+    // delete letter
+    if (e.key === "Backspace") display.textContent = backspace(display.textContent);
+
+    // check if maxlength > 10
+    display.textContent = maxLength(display.textContent);
+})
 
 // reset all variables when user clicks "clear"
 clear.addEventListener("click", clearVars);
@@ -154,9 +162,13 @@ function clearVars() {
 // returns a string of length 10 only 
 function maxLength(string) {
     if (string.length > 10) {
-        return string.substr(0, 10);
+        return string.substring(0, 10);
     } else {
         //if normal number, return it
         return string;
     }
+}
+
+function backspace(str) {
+    return str.substring(0, str.length-1);
 }
